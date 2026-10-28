@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OWASP GenAI Top 10 · 2026 簡報目錄</title>
+<meta name="description" content="OWASP GenAI／LLM Top 10（2026 版）十項風險的中文簡報目錄，每項一頁互動式說明。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#f4f6f8; --paper:#ffffff; --fg:#18212d; --muted:#5a6676; --line:#dde3ea;
+  --accent:#0d6b73; --accent-soft:#e1f0f1;
+  --up:#1f7a3d; --up-soft:#e2f3e7; --down:#b3261e; --down-soft:#fbe7e5;
+  --bar:#18212d; --bar-fg:#f4f6f8;
+  --f-display:"Noto Serif TC","Songti TC",serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10151c; --paper:#171e27; --fg:#e4e9ef; --muted:#9aa6b4; --line:#2a3440;
+  --accent:#5ec2c9; --accent-soft:#16333a;
+  --up:#6fd394; --up-soft:#173322; --down:#f2867d; --down-soft:#3a1f1d;
+  --bar:#e4e9ef; --bar-fg:#10151c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10151c; --paper:#171e27; --fg:#e4e9ef; --muted:#9aa6b4; --line:#2a3440;
+  --accent:#5ec2c9; --accent-soft:#16333a;
+  --up:#6fd394; --up-soft:#173322; --down:#f2867d; --down-soft:#3a1f1d;
+  --bar:#e4e9ef; --bar-fg:#10151c; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.75}
+h1,h2,h3{font-family:var(--f-display);line-height:1.35;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:12px;padding-block:12px}
+.badge{font-family:var(--f-mono);font-size:.75rem;font-weight:600;background:var(--bar);color:var(--bar-fg);padding:2px 8px;border-radius:3px;flex:none}
+.top-title{font-family:var(--f-display);font-weight:900;font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.theme{margin-left:auto;flex:none;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;padding:3px 12px;font:inherit;font-size:.82rem;cursor:pointer}
+.theme:hover{border-color:var(--accent);color:var(--accent)}
+
+/* hero */
+.hero{padding:48px 0 28px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.hero h1{font-size:clamp(2rem,5vw,3.1rem);font-weight:900}
+.hero h1 small{display:block;font-family:var(--f-mono);font-size:.9rem;font-weight:400;letter-spacing:.04em;color:var(--muted);margin-top:6px}
+.lede{max-width:46em;color:var(--muted);font-size:1.02rem}
+.how{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.88rem;color:var(--muted)}
+.how span{display:inline-flex;align-items:center;gap:6px}
+.chip{font-style:normal;font-family:var(--f-mono);font-size:.72rem;font-weight:600;padding:1px 7px;border-radius:999px;white-space:nowrap}
+.chip.up{background:var(--up-soft);color:var(--up)}
+.chip.down{background:var(--down-soft);color:var(--down)}
+.chip.same{background:var(--accent-soft);color:var(--accent)}
+.chip.new{background:var(--accent-soft);color:var(--accent)}
+
+/* grid */
+.grid{list-style:none;margin:0;padding:0 0 32px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+@media (max-width:400px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{height:100%}
+.card a{position:relative;display:flex;flex-direction:column;gap:12px;height:100%;padding:20px 20px 18px;background:var(--paper);border:1px solid var(--line);border-radius:10px;text-decoration:none;transition:border-color .15s,transform .15s,box-shadow .15s}
+.card a:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 20px -12px rgba(0,0,0,.35)}
+.card .head{display:flex;align-items:flex-start;gap:14px}
+.num{font-family:var(--f-display);font-weight:900;font-size:2.6rem;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums;flex:none;min-width:2.2ch}
+.card h2{font-size:1.25rem;font-weight:900}
+.card h2 small{display:block;font-family:var(--f-mono);font-size:.74rem;font-weight:400;color:var(--muted);letter-spacing:.02em;margin-top:2px}
+.card p{font-size:.93rem;color:var(--fg)}
+.meta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:12px;border-top:1px dashed var(--line);font-size:.8rem;color:var(--muted)}
+.rank{display:flex;align-items:center;gap:8px;font-family:var(--f-mono)}
+.go{font-weight:700;color:var(--accent);white-space:nowrap}
+.card a:hover .go{text-decoration:underline}
+
+/* movement strip */
+.moves{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:28px}
+.moves h3{font-size:1.05rem;margin-bottom:4px}
+.moves .sub{font-size:.85rem;color:var(--muted);margin-bottom:14px}
+.mv{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px}
+.mv a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:8px;background:var(--bg);text-decoration:none;font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.mv a:hover{outline:1px solid var(--accent)}
+.mv b{font-size:1.05rem;color:var(--fg)}
+@media (max-width:760px){.mv{grid-template-columns:repeat(5,minmax(0,1fr))}}
+
+footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:.82rem;color:var(--muted)}
+footer .wrap{display:flex;flex-direction:column;gap:6px}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){.card a{transition:none}.card a:hover{transform:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <span class="badge">GenAI Top 10</span>
+  <span class="top-title">OWASP LLM 風險簡報目錄</span>
+  <button class="theme" id="theme" type="button" aria-label="切換深色或淺色">深 / 淺</button>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <span class="eyebrow">OWASP GenAI Top 10 · 2026</span>
+    <h1>大型語言模型的十大風險<small>OWASP Top 10 for LLM &amp; GenAI Applications · 2026</small></h1>
+    <p class="lede">十項風險各有一份互動式簡報，用白話與比喻說明它怎麼發生、會造成什麼傷害，以及該怎麼防。點任一張卡片開始閱讀。</p>
+    <div class="how">
+      <span>名次變化（相較 2025 版）：</span>
+      <span><i class="chip up">↑ 上升</i></span>
+      <span><i class="chip down">↓ 下降</i></span>
+      <span><i class="chip same">= 持平</i></span>
+    </div>
+  </section>
+
+  <ol class="grid" id="grid" aria-label="十項風險簡報"></ol>
+
+  <section class="moves" aria-labelledby="mvh">
+    <h3 id="mvh">一眼看名次變化</h3>
+    <p class="sub">上方是 2026 名次，下方是 2025 版的位置</p>
+    <div class="mv" id="mv"></div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <p>內容依據 <a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">OWASP GenAI Security Project</a> 的 2026 版 Top 10 整理，供內部教育訓練使用。</p>
+  <p>各頁皆為獨立網頁，可單獨分享連結。</p>
+</div></footer>
+
+<script>
+const BASE = "https://bojack-tw.github.io/OWASP-GenAI-LLM-Top-10-LLM";
+const items = [
+  {n:1,  zh:"提示注入",       en:"Prompt Injection",                  prev:1,  tl:"模型分不清「指令」和「資料」。它讀到的任何文字，都可能被當成命令。"},
+  {n:2,  zh:"敏感資訊揭露",   en:"Sensitive Information Disclosure",  prev:2,  tl:"AI 看得到的東西，就有可能被說出去。而且「回答」只是其中一個出口。"},
+  {n:3,  zh:"過度代理",       en:"Excessive Agency",                  prev:6,  tl:"AI 手上的工具、權限和自主權，超過它真正需要的。一旦判斷錯誤或被騙，錯誤就會變成真實的破壞。"},
+  {n:4,  zh:"供應鏈風險",     en:"Supply Chain",                      prev:3,  tl:"你沒寫的程式、沒訓練的模型、沒看過的資料，全都是你的攻擊面。"},
+  {n:5,  zh:"資料與模型中毒", en:"Data and Model Poisoning",          prev:4,  tl:"有人在 AI「學習的材料」裡下毒，讓壞行為直接長在模型裡。平常一切正常，遇到特定暗號才發作。"},
+  {n:6,  zh:"無上限消耗",     en:"Unbounded Consumption",             prev:10, tl:"AI 應用沒替「用量」設上限。攻擊者花一點力氣，就能讓服務當機、帳單爆炸，甚至把模型抄走。"},
+  {n:7,  zh:"錯誤資訊",       en:"Misinformation",                    prev:9,  tl:"AI 講得很有把握、聽起來很合理，但內容是錯的，而且有人（或另一個程式）真的照著做了。"},
+  {n:8,  zh:"隱藏情境外洩",   en:"Hidden Context Exposure",           prev:7,  tl:"模型看得到的，攻擊者就有機會套出來。所以別把秘密或安全機制放在模型看得到的地方。", note:"2025 名稱：系統提示外洩"},
+  {n:9,  zh:"向量與嵌入弱點", en:"Vector and Embedding Weaknesses",   prev:8,  tl:"攻擊者不必說服 AI，只要把東西放在向量空間裡「對的位置」。"},
+  {n:10, zh:"不當輸出處理",   en:"Improper Output Handling",          prev:5,  tl:"AI 的回覆常被直接交給網頁、資料庫、終端機執行。中間沒人把關，攻擊者就能借 AI 的嘴讓系統做壞事。"}
+];
+const pad = n => String(n).padStart(2,"0");
+const chip = it => {
+  const d = it.prev - it.n;
+  if (d > 0) return `<i class="chip up">↑ ${d}</i>`;
+  if (d < 0) return `<i class="chip down">↓ ${-d}</i>`;
+  return `<i class="chip same">= 持平</i>`;
+};
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+document.getElementById("grid").innerHTML = items.map(it => `
+  <li class="card"><a href="${BASE}${pad(it.n)}/" aria-label="LLM${pad(it.n)} ${esc(it.zh)}：開啟簡報">
+    <div class="head">
+      <span class="num">${pad(it.n)}</span>
+      <h2>${esc(it.zh)}<small>LLM${pad(it.n)} · ${esc(it.en)}</small></h2>
+    </div>
+    <p>${esc(it.tl)}</p>
+    <div class="meta">
+      <span class="rank">${chip(it)}<span>2025 · LLM${pad(it.prev)}${it.note ? "（" + esc(it.note.replace("2025 名稱：","")) + "）" : ""}</span></span>
+      <span class="go">開啟簡報 →</span>
+    </div>
+  </a></li>`).join("");
+
+document.getElementById("mv").innerHTML = items.map(it => `
+  <a href="${BASE}${pad(it.n)}/" title="LLM${pad(it.n)} ${esc(it.zh)}">
+    <b>${pad(it.n)}</b>${chip(it)}<span>原 ${pad(it.prev)}</span>
+  </a>`).join("");
+
+/* theme toggle (per-viewer convenience) */
+const root = document.documentElement, KEY = "owasp-index-theme";
+try { const t = localStorage.getItem(KEY); if (t) root.dataset.theme = t; } catch (e) {}
+document.getElementById("theme").addEventListener("click", () => {
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem(KEY, root.dataset.theme); } catch (e) {}
+});
+</script>
+</body>
+</html>
