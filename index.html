@@ -138,6 +138,9 @@ const items = [
   {n:10, zh:"不當輸出處理",   en:"Improper Output Handling",          prev:5,  tl:"AI 的回覆常被直接交給網頁、資料庫、終端機執行。中間沒人把關，攻擊者就能借 AI 的嘴讓系統做壞事。"}
 ];
 const pad = n => String(n).padStart(2,"0");
+/* items already moved into this repo get a local path */
+const LOCAL = new Set([1]);
+const url = n => LOCAL.has(n) ? `LLM${pad(n)}/` : `${BASE}${pad(n)}/`;
 const chip = it => {
   const d = it.prev - it.n;
   if (d > 0) return `<i class="chip up">↑ ${d}</i>`;
@@ -147,7 +150,7 @@ const chip = it => {
 const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 document.getElementById("grid").innerHTML = items.map(it => `
-  <li class="card"><a href="${BASE}${pad(it.n)}/" aria-label="LLM${pad(it.n)} ${esc(it.zh)}：開啟簡報">
+  <li class="card"><a href="${url(it.n)}" aria-label="LLM${pad(it.n)} ${esc(it.zh)}：開啟簡報">
     <div class="head">
       <span class="num">${pad(it.n)}</span>
       <h2>${esc(it.zh)}<small>LLM${pad(it.n)} · ${esc(it.en)}</small></h2>
@@ -160,7 +163,7 @@ document.getElementById("grid").innerHTML = items.map(it => `
   </a></li>`).join("");
 
 document.getElementById("mv").innerHTML = items.map(it => `
-  <a href="${BASE}${pad(it.n)}/" title="LLM${pad(it.n)} ${esc(it.zh)}">
+  <a href="${url(it.n)}" title="LLM${pad(it.n)} ${esc(it.zh)}">
     <b>${pad(it.n)}</b>${chip(it)}<span>原 ${pad(it.prev)}</span>
   </a>`).join("");
 
