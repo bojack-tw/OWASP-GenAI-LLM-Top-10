@@ -124,7 +124,6 @@ footer a{color:var(--accent)}
 </div></footer>
 
 <script>
-const BASE = "https://bojack-tw.github.io/OWASP-GenAI-LLM-Top-10-LLM";
 const items = [
   {n:1,  zh:"提示注入",       en:"Prompt Injection",                  prev:1,  tl:"模型分不清「指令」和「資料」。它讀到的任何文字，都可能被當成命令。"},
   {n:2,  zh:"敏感資訊揭露",   en:"Sensitive Information Disclosure",  prev:2,  tl:"AI 看得到的東西，就有可能被說出去。而且「回答」只是其中一個出口。"},
@@ -138,9 +137,8 @@ const items = [
   {n:10, zh:"不當輸出處理",   en:"Improper Output Handling",          prev:5,  tl:"AI 的回覆常被直接交給網頁、資料庫、終端機執行。中間沒人把關，攻擊者就能借 AI 的嘴讓系統做壞事。"}
 ];
 const pad = n => String(n).padStart(2,"0");
-/* items already moved into this repo get a local path */
-const LOCAL = new Set([1]);
-const url = n => LOCAL.has(n) ? `LLM${pad(n)}/` : `${BASE}${pad(n)}/`;
+/* every briefing lives in this repo at LLMxx/ */
+const url = n => `LLM${pad(n)}/`;
 const chip = it => {
   const d = it.prev - it.n;
   if (d > 0) return `<i class="chip up">↑ ${d}</i>`;
